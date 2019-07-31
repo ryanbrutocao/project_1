@@ -33,8 +33,41 @@
 <div class="userChecklist box">
   This is the checklist section. <br>
   <input type="text" id="checklistItem" placeholder="Checklist Item"><br>
+  <button type="button" value="add to list" id="itemBtn">Add Item</button>
+    <ul id='list'>
+      <li>Waterbottle</li>
+      <li>Sunscreen</li>
+      <li>Backpack</li>
+      <li>Snacks</li>
+      <li>Maps</li>
+    </ul>
+    <script>
+    $("button").on("click", function(){
+  alert("Button clicked.");
+});
 
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores quisquam quo aut vel suscipit enim possimus iure illo voluptate, voluptatum ex reprehenderit. Repudiandae cum corporis aliquid. Itaque quibusdam molestias dolore tempora, autem ad similique praesentium nesciunt accusamus, perspiciatis vitae? Laborum eius ipsum obcaecati dolor voluptatem vitae maxime quae cupiditate error provident esse, corrupti recusandae odio accusamus saepe totam commodi quo, unde, expedita magni modi explicabo inventore. Ratione, accusamus illo soluta deleniti aliquam nam perferendis neque labore tempore exercitationem, facere, qui accusantium vel. Magni minus, voluptates eveniet maxime vel fugit odio unde non corrupti molestias ducimus. Hic delectus amet autem ducimus.
+
+// (function($){
+//     $('#myform').submit(function(e){
+//         var val = $('#in').val();
+//         $('ul.list').append('<li>' + val + '</li>');
+//         e.preventDefault();
+//     });
+// });
+
+
+//     document.getElementById("itemBtn").onclick = function() {
+  
+//     var text = document.getElementById("checklistItem").value; 
+
+//     var li = "<li>" + text + "</li>";
+
+//     document.getElementById("list").appendChild();
+// }
+    </script>
+
+
+
 </div><br>
 
 <div class="currentWeather box">
