@@ -42,18 +42,16 @@
       <li>Maps</li>
     </ul>
     <script>
-    $("button").on("click", function(){
-  alert("Button clicked.");
-});
+    $(document).ready(function(){
+      $("#itemBtn").click(function(){
+        $("#list").append("<li></li>")
+      })
 
 
-// (function($){
-//     $('#myform').submit(function(e){
-//         var val = $('#in').val();
-//         $('ul.list').append('<li>' + val + '</li>');
-//         e.preventDefault();
-//     });
-// });
+    });
+
+
+
 
 
 //     document.getElementById("itemBtn").onclick = function() {
