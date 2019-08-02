@@ -18,7 +18,7 @@ var database = firebase.database();
 
 $("#hikeSearch").on("click", function (event) {
   event.preventDefault();
-////-------------------------------
+// sets the variables and collects their values
 var lat = 40.0274;
 var latSearch = "&lat=" + lat; 
 var lon = -105.2519;
@@ -35,6 +35,7 @@ var minStarsSearch = "&minStars=" + minStars
   var queryURL = "https://www.hikingproject.com/data/get-trails?"  + latSearch + lonSearch + minDistanceSearch + searchNumSearch + maxDistanceSearch + minStarsSearch +"&key=200539534-e303f9de12af6752f80ed195ba310625"
 // console.log(queryURL);
 // console.log(minStarsSearch);
+
 
   // Perfoming an AJAX GET request to our queryURL
   $.ajax({
@@ -54,10 +55,10 @@ for (var i = 0; i < results.length; i++) {
 
   for (j=0; j<results[i].name[j].length; j++){
   var div = $("<div>")
-  var p = $("<p>")
-  div.append(p)
-  
 
+  trailImage = results[i].imgSmallMed
+  div.append(trailImage);
+console.log(trailImage);
   trailName = results[i].name;
   div.append(trailName)
 console.log(trailName);
@@ -100,19 +101,12 @@ console.log(trailDescent);
   trailConditionDate = results[i].conditionDate;
   div.append(trailConditionDate);
   console.log(trailConditionDate);
-  $("#trailRatingResult").append(div)
 
-////-------------------------------
-  //grabs user input
-  // var maxDistance = $("#maxHikeDistance").val().trim();
-  // var minDistance = $("#minHikeDistance").val().trim();
-  // var hikeRating = $("#hikeRating").val().trim();
-  // console.log("hike rating input: ", hikeRating);
-  // var resultsNum = $("#resultsNum").val().trim();
-  
+
   // creates local 'temporary' object for holding hike data
   
   var hikeData = {
+    trail_image: trailImage,
     trail_name: trailName,
     trail_summary: trailSummary,
     trail_location: trailLocation,
@@ -139,8 +133,8 @@ console.log(trailDescent);
   // console.log("trail rating from API: ", trailRating);
   // console.log(resultsNum);
   
-  alert("successfully added to database")
-  
+
+  $("#trail_image").val("")
   $("#trail_Name").val("");
   $("#trail_Summary").val("");
   $("#trail_Rating").val("");
@@ -156,15 +150,12 @@ console.log(trailDescent);
   $("#trail_Condition_Status").val("");
   $("#trail_Condition_Date").val("");
 
-
   }}
   
-  
+  //referencing the database and setting the value of the snapshots to a variable
   database.ref().on("child_added", function(childSnapshot) {
  
-    //store database results into variables
-  // var maxDistData = childSnapshot.val().maxDistance;
-  // var minDistData = childSnapshot.val().minDistance;
+  var trailImageData = childSnapshot.val().trail_image;
   var trailNameData = childSnapshot.val().trail_name;
   var trailSummaryData = childSnapshot.val().trail_summary;
   var trailLocationData = childSnapshot.val().trail_location;
@@ -180,32 +171,79 @@ console.log(trailDescent);
   var trailConditionDetailsData = childSnapshot.val().trail_condition_details;
   var trailConditionDateData = childSnapshot.val().trail_condition_date;
 
+
+
+ // adding jquery to variables for carousel card formatting
+  var card = $("<div>").addClass("card");
+  var bold = $("<b>")
+  var linkBtn = $("<a>").addClass("btn-floating halfway-fab waves-effect waves-light red");
+  var iLink = $("<i>").addClass("material-icons")
+  var addPlus = $("<i>").html("add")
+ 
+  iLink.append(addPlus)
+  var cardImg = $("<div>").addClass("card-image");
+  var cardContent = $("<div>").addClass("card-content");
+  var carouselItem = $("<div>").addClass("carousel-item")
+  var trailNameData = $("<div>").text(trailNameData);
+  bold.append(trailNameData)
+  var trailLocationData = $("<div>").text(trailLocationData);
+  var trailImageData =  $("<img>").attr("src",trailImageData);
   
-  var newRow = $("<tr>").append(
-    $("<td>").text(trailNameData),
-    $("<td>").text(trailSummaryData),
-    $("<td>").text(trailLocationData),
-    $("<td>").text(trailRatingData),
-    $("<td>").text(trailLengthData),
-    $("<td>").text(trailAscentData),
-    $("<td>").text(trailDescentData),
-    $("<td>").text(trailHighAltData),
-    $("<td>").text(trailLowAltData),
-    $("<td>").text(trailLongitudeData),
-    $("<td>").text(trailLatitudeData),
-    $("<td>").text(trailConditionStatusData),
-    $("<td>").text(trailConditionDetailsData),
-    $("<td>").text(trailConditionDateData),
+  trailImageData.addClass("card-image")
+  var trailSummaryData =  $("<div>").text(trailSummaryData);
+  var trailLengthData = $("<div>").append("Trail Length: ", + trailLengthData + " miles");
+  var trailAscentData = $("<div>").append("Asecent: " + trailAscentData + " feet");
+  var trailDescentData = $("<div>").append("Descent: " + trailDescentData + " feet");
+
+  var trailHighAltData = $("<div>").append("Highest Altitude: ", + trailHighAltData + " feet" );
+  var trailLowAltData =  $("<div>").append("Lowest Altitude: ", trailLowAltData + " feet");
+  var trailLongitudeData = $("<div>").append("Longitude: ", + trailLongitudeData);
+  var trailLatitudeData = $("<div>").append("Latitude: ", + trailLatitudeData);
+  
+  var trailConditionStatusData =  $("<div>").append("Trail Condition: ", + trailConditionStatusData);
+  var trailConditionDetailsData =  $("<div>").append("Condition Details: ", + trailConditionDetailsData);
+  var trailConditionDateData = $("<div>").append("Date Reported: " + trailConditionDateData);
+  var trailRatingData =  $("<div>").append("Trail Rating: ", + trailRatingData);
+  
+
+  //appending info to the card
+  carouselItem.append(card)
+  cardContent.append(card)
+  trailNameData.addClass("card-title");
+  card.append(trailNameData);
+  card.append(trailLocationData)
+  card.append(cardImg)
+  cardImg.append(linkBtn)
+  cardImg.append(trailImageData)
+  linkBtn.append(iLink)
+  card.append(trailSummaryData);
+  card.append(trailLengthData)
+  card.append(trailAscentData)
+  card.append(trailDescentData);
+  card.append(trailHighAltData)
+  card.append(trailLowAltData)
+  card.append(trailLongitudeData);
+  card.append(trailLatitudeData)
+  card.append(trailConditionStatusData)
+  card.append(trailConditionDetailsData);
+  card.append(trailConditionDateData)
+  card.append(trailRatingData)
+
+  //setting all card content to a single variable
+var newHike = carouselItem.append(
+  cardContent
+
   );
-  newRow.append("<br>")
-  // Append the new row to the table
-  $("#hiking-table > tbody").append(newRow);
-  
+ 
+  //appending that variable to the HTML page
+$("#carouselResults").append(newHike)  
   });
-      
+  $(document).ready(function(){
+    $('.carousel').carousel();
+  });
     })
 
   });
 
 
-// End of Ryan's hiking API and Firebase Code //
+// End of Ryan's hiking API and Firebase Code //HighAlt

@@ -8,6 +8,10 @@
 
    <link rel="stylesheet" href="./assets/reset.css">
    <link rel="stylesheet" href="./assets/style.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link type="text/css" rel="stylesheet" href="./assets/materialize/css/materialize.css"  media="screen,projection"/>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
     <script type="text/javascript">   </script>       
@@ -15,6 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    
     <!-- Keep these links up top -->
 <!-- Working code below here -->
 <container>
@@ -29,37 +34,9 @@
 <input class="hikeInputs"type="number" min="0" max="500" id="resultsNum"placeholder="Max 500" ><br>
 <input type="submit" id="hikeSearch" value="Find a hike!">
 
-<div class="searchHikes box">
-
-  <div class="card-body">
-    <table class="table table-sm table-hover" id='hiking-table'>
-      <thead>
-        <tr>
-          <th id="trail_Name" scope="col">Trail Name</th>
-          <th id="trail_Summary" scope="col">Summary</th>
-          <th id="trail_Location" scope="col">Location</th>
-          <th id="trail_Rating" scope="col">Rating</th>          
-          <th id="trail_Length" scope="col">Trail Length</th>
-          <th id="trail_Ascent" scope="col">Ascent</th>
-          <th id="trail_Descent" scope="col">Descent</th>
-          <th id="trail_High_Altitude"" scope="col">High Altitude</th>
-          <th id="trail_Low_Altitude" scope="col">Low Altitude</th>
-          <th id="trail_Latitude" scope="col">Latitude</th>
-          <th id="trail_Longitude" scope="col">Longitude</th>
-          <th id="trail_Condition_Status" scope="col">Condition Status</th>
-          <th id="trail_Condition_Status" scope="col">Condition Details</th>
-          <th id="trail_Condition_Date" scope="col">Condition Date</th>
-        </tr>
-       
+<div id="carouselResults" class="carousel">
 
 
-
-
-
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
   </div>
 
 <!-- <span id="trailNameResult"></span>
@@ -67,7 +44,7 @@
 <span id="ascentResult"></span>
 <span id="descentResult"></span> -->
 <span id="trailRatingResult"></span>
-
+<br>
 
 </div>
 
@@ -116,6 +93,9 @@
 
 <!-- Working code above here -->
 <!-- Keep these links at the bottom -->
+
+<script type="text/javascript" src="./assets/materialize/js/materialize.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="./assets/app.js"></script>
   </body>
