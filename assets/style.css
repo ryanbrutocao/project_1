@@ -1,9 +1,13 @@
 .box {
   border: 2px solid black;
-  height: 300px;
+  /* height: 300px; */
   
-  max-width: 35%;
+  max-width: 100%;
   float: left;
   margin: 1%;
   padding: 1%;
+}
+.hikeInputs {
+  min-width: 400px;
+  width: 100%;
 }

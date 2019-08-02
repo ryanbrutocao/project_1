@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<<<<<<< HEAD
    <link rel="stylesheet" href="./assets/reset.css">
    <link rel="stylesheet" href="./assets/style.css">
   </head>
@@ -14,20 +13,62 @@
     <script type="text/javascript">   </script>       
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Keep these links up top -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <!-- Keep these links up top -->
 <!-- Working code below here -->
 <container>
 <div class="searchHikes box">
   This is the search for hikes section. <br>
 
-<input type="text" id="hikeName" placeholder="Hike Name"><br>
-<input type="text" id="hikingCoordinates" placeholder="Hike coordinates"><br>
-<input type="text" id="hikeMaxDistance" placeholder="Max Distance"><br>
-<input type="text" id="hikeMinDistance" placeholder="Minimum Distance"><br>
-<input type="text" id="hikeRating"placeholder="Hike Rating"><br>
+<!-- <input type="text" id="hikeName" placeholder="Hike Name"><br> -->
+<!-- <input type="number" id="hikingCoordinates"  placeholder="Hike coordinates"><br> -->
+<input class="hikeInputs" type="number" min="0" max="200" id="maxHikeDistance" placeholder="Max Hike Distance (0-200 Miles)"><br>
+<input class="hikeInputs"type="number" min="0" max="200" id="minHikeDistance" placeholder="Min Hike Distance (0-200 Miles)"><br>
+<input class="hikeInputs"type="number" min="0" max="4" id="hikeRating" placeholder="Hike Rating (0-4)"><br>
+<input class="hikeInputs"type="number" min="0" max="500" id="resultsNum"placeholder="Max 500" ><br>
+<input type="submit" id="hikeSearch" value="Find a hike!">
+
+<div class="searchHikes box">
+
+  <div class="card-body">
+    <table class="table table-sm table-hover" id='hiking-table'>
+      <thead>
+        <tr>
+          <th id="trail_Name" scope="col">Trail Name</th>
+          <th id="trail_Summary" scope="col">Summary</th>
+          <th id="trail_Location" scope="col">Location</th>
+          <th id="trail_Rating" scope="col">Rating</th>          
+          <th id="trail_Length" scope="col">Trail Length</th>
+          <th id="trail_Ascent" scope="col">Ascent</th>
+          <th id="trail_Descent" scope="col">Descent</th>
+          <th id="trail_High_Altitude"" scope="col">High Altitude</th>
+          <th id="trail_Low_Altitude" scope="col">Low Altitude</th>
+          <th id="trail_Latitude" scope="col">Latitude</th>
+          <th id="trail_Longitude" scope="col">Longitude</th>
+          <th id="trail_Condition_Status" scope="col">Condition Status</th>
+          <th id="trail_Condition_Status" scope="col">Condition Details</th>
+          <th id="trail_Condition_Date" scope="col">Condition Date</th>
+        </tr>
+       
 
 
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate sequi ullam iure, natus consequuntur et veritatis velit quaerat laboriosam deleniti repellendus consequatur reprehenderit recusandae possimus debitis unde nobis nemo tenetur? Aliquam asperiores voluptate iste veniam veritatis harum ipsa officia, facere tempore quas nulla non corrupti dolores ab maiores possimus cupiditate, in omnis temporibus qui officiis dignissimos voluptatem ex! Nostrum, corrupti. Voluptates cupiditate cum ea nobis amet commodi, quisquam doloribus ipsa sunt! Tempora, cupiditate praesentium neque est incidunt cumque, in dicta eos corrupti expedita consequatur dolores nihil atque! Accusantium culpa eveniet nihil, aperiam veniam sed ut in quae totam! Iusto, fugit!
+
+
+
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+
+<!-- <span id="trailNameResult"></span>
+<span id="lenghtResult"></span>
+<span id="ascentResult"></span>
+<span id="descentResult"></span> -->
+<span id="trailRatingResult"></span>
+
+
 </div>
 
 <div class="userChecklist box">
@@ -87,6 +128,15 @@
 
   Lorem ipsum dolor sit amet consectetur adipisicing elit. Non dolore velit ut, eius porro cum, est molestias nobis temporibus deleniti quasi nostrum amet officiis mollitia pariatur quas dignissimos quia ratione necessitatibus blanditiis nisi quibusdam dolorum! Sed ipsam, magnam iusto nihil, facere necessitatibus doloremque unde nam laboriosam quasi rem quidem repellendus laborum sapiente aut consequatur, voluptatum corrupti nisi labore obcaecati eum modi. Distinctio hic voluptate dicta tempore eum iure, ducimus corporis maiores quos quam nisi, delectus praesentium dolorum esse, porro optio ut placeat et qui animi modi dolores mollitia corrupti beatae. Eius veritatis ullam, velit laboriosam placeat natus accusantium doloremque adipisci.
 </div><br>
+
+
+
+
+<!-- //// -->
+
+
+  <!--  -->
+
 </container>
 
 
@@ -100,18 +150,5 @@
 <!-- Keep these links at the bottom -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="./assets/app.js"></script>
-=======
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
-      <h1>hello</h1>
-      
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
->>>>>>> 9f8d79fb0db1012d726cdd846e3943c3fd09794f
   </body>
 </html>
