@@ -33,23 +33,23 @@
 <div class="userChecklist box">
   This is the checklist section. <br>
   <input type="text" id="checklistItem" placeholder="Checklist Item"><br>
-  <button type="button" value="add to list" id="itemBtn">Add Item</button>
-    <ul id='list'>
+  <input type="button" value="Add Item" id="itemBtn">  
+  <ul id='list'>
       <li>Waterbottle</li>
       <li>Sunscreen</li>
       <li>Backpack</li>
       <li>Snacks</li>
       <li>Maps</li>
     </ul>
-    <script>
+    <script type="text/javascript">
     $(document).ready(function(){
       $("#itemBtn").click(function(){
-        $("#list").append("<li></li>")
+        $("#list").append();
+        alert("clicked");
       })
 
 
     });
-
 
 
 
