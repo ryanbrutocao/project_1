@@ -11,3 +11,32 @@
   min-width: 400px;
   width: 100%;
 }
+.card {
+  width: 300px;
+  /* height: auto; */
+}
+.searchHikes {
+  width: 90%;
+  min-height:100px;
+}
+#carouselResults {
+  width: 90%;
+}
+.card-content {
+  widows: 450px;
+}
+.card {
+  width: 400px;
+  border:1px solid rgb(178, 178, 178);
+}
+.carousel {
+  height: 640px !important;
+  vertical-align: text-top;
+}
+.carousel .carousel-item {
+  width:400px !important;
+min-height: 450px !important;
+background-color: white;}
+.btn-floating.halfway-fab {
+  bottom: 0px !important;
+}
