@@ -1,3 +1,26 @@
+
+html { 
+  background: url(./images/pexels-photo-1666021.jpeg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+}
+img {
+  max-height: 300px
+}
+#header {
+  height:3.6em;
+  background-color: #1b5e20;
+  opacity: .9;
+}
+.flow-text.center-align{
+  color: whitesmoke;
+  font-family: 'Beth Ellen', cursive;
+  padding-top: .5em;
+}
+
 .box {
   border: 2px solid black;
   /* height: 300px; */
@@ -8,7 +31,7 @@
   padding: 1%;
 }
 .hikeInputs {
-  min-width: 400px;
+  /* min-width: 400px; */
   width: 100%;
 }
 .card {
@@ -16,17 +39,18 @@
   /* height: auto; */
 }
 .searchHikes {
-  width: 90%;
+  width: 100%;
   min-height:100px;
 }
+/* 
 #carouselResults {
-  width: 90%;
-}
+  width: 100%;
+} */
 .card-content {
-  widows: 450px;
+  widows: 100%;
 }
 .card {
-  width: 400px;
+  width: 100%;
   border:1px solid rgb(178, 178, 178);
 }
 .carousel {
@@ -39,4 +63,78 @@ min-height: 450px !important;
 background-color: white;}
 .btn-floating.halfway-fab {
   bottom: 0px !important;
+}
+.parallax-container {
+  height: 1000px;
+}
+#addressInput.card-panel.teal {
+  width: 100%;
+}
+.toBrintTable {
+  background: white;
+  border: 1px solid black;
+  height:auto;
+  var cityData = childSnapshot.val().weather_city;width: 30%;
+}
+
+
+@media only screen and (min-width:1024px) {
+
+  #addressInput.card-panel.teal {
+    width: 30%;
+    margin-left: 3%;
+
+  }
+  #hikeSearch.card-panel.yellow {
+    width: 30%;
+    margin-left: 3%;
+
+  }
+  #carouselResults{
+    
+    width: 60%;
+    float: right;
+    position: top;
+    margin-top:-600px;
+    margin-right: 5%;
+  }
+}
+
+
+@media only screen and (max-width:993px) {
+
+  #addressInput.card-panel.teal {
+    width: 45%;
+    float: left;
+    margin-left: 3%;
+
+  }
+  #hikeSearch.card-panel.yellow {
+    width: 45%;
+    float: left;
+    margin-left: 3%;
+
+  }
+  #carouselResults{
+    
+    width: 100%;
+    /* float: right; */
+  }
+}
+@media only screen and (max-width:768px) {
+
+  #addressInput.card-panel.teal {
+    width: 80%;
+    margin-left: 10%;
+  }
+  #hikeSearch.card-panel.yellow {
+    width: 80%;
+    margin-left: 10%;
+    /* margin: 0 auto; */
+  }
+  #carouselResults{
+    
+    width: 100%;
+    /* float: right; */
+  }
 }

@@ -12,6 +12,9 @@
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
    <link type="text/css" rel="stylesheet" href="./assets/materialize/css/materialize.css"  media="screen,projection"/>
    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <script src='https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
+   <link href='https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
+   <link href="https://fonts.googleapis.com/css?family=Beth+Ellen&display=swap" rel="stylesheet">
   </head>
   <body>
     <script type="text/javascript">   </script>       
@@ -19,35 +22,163 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+   
+<div id="header"> <p class="flow-text center-align">Get out and see the world!</p></div>
+<div class="row">
+<div class="s12 m12 l4 xl4">
+
+
+  <div class="card-panel teal" id="addressInput">
+    <span class="white-text">
+        <div class="addressBox">
+            <input class="numStreet" type="text" id="streetNum" placeholder="Address"><br>
+            <input class="city" type="text" id="city" placeholder="City"><br>
+            <input class="state" type="text" id="state" placeholder="State"><br>
+            <input class="zip" type="number" id="zip" placeholder="Zip Code"><br>
+            <!-- <input type="submit" id="addressSubmit" value="send address to database"> -->
+          </div>
+    </span>
+  </div>
+
+
+
+
+    <div class="card-panel yellow" id="hikeSearch">
+      <span class="white-text">
+          <div class="searchHikes">
+              This is the search for hikes section. <br>
+            
+            <input class="hikeInputs" type="number" min="0" max="200" id="maxHikeDistance" placeholder="Max Hike Distance (0-200 Miles)"><br>
+            <input class="hikeInputs"type="number" min="0" max="200" id="minHikeDistance" placeholder="Min Hike Distance (0-200 Miles)"><br>
+            <input class="hikeInputs"type="number" min="0" max="4" id="hikeRating" placeholder="Hike Rating (0-4)"><br>
+            <input class="hikeInputs"type="number" min="0" max="500" id="resultsNum"placeholder="Max 500" ><br>
+            <input type="submit" id="hikeSearch" value="Find a hike!">
+            
+            
+            <br>
+            
+          </div>
+          
+        </span>
+      </div>
+    </div>
     
+    
+    
+    
+    
+    <div id="carouselResults" class="carousel col l8 xl8">
+    
+  </div>
+    
+    
+    
+    
+    
+    <!-- <div class="col s9 m8 l8">This is the right side column</div> -->
+      
+            </div>
+    
+        
+      </div>
+    
+          
+
+
+    <div id='map' style='width: 400px; height: 300px;'></div>
+
+
     <!-- Keep these links up top -->
 <!-- Working code below here -->
 <container>
-<div class="searchHikes box">
-  This is the search for hikes section. <br>
 
-<!-- <input type="text" id="hikeName" placeholder="Hike Name"><br> -->
-<!-- <input type="number" id="hikingCoordinates"  placeholder="Hike coordinates"><br> -->
-<input class="hikeInputs" type="number" min="0" max="200" id="maxHikeDistance" placeholder="Max Hike Distance (0-200 Miles)"><br>
-<input class="hikeInputs"type="number" min="0" max="200" id="minHikeDistance" placeholder="Min Hike Distance (0-200 Miles)"><br>
-<input class="hikeInputs"type="number" min="0" max="4" id="hikeRating" placeholder="Hike Rating (0-4)"><br>
-<input class="hikeInputs"type="number" min="0" max="500" id="resultsNum"placeholder="Max 500" ><br>
-<input type="submit" id="hikeSearch" value="Find a hike!">
+  
 
-<div id="carouselResults" class="carousel">
+  
+<!-- top of weather section -->
+  
+<div class="currentWeather">
+    
+<!-- <input type="submit" id="testBtn" value="testBtn"> -->
 
+<div class="card">
+  <div class="card-content blue">
+    <p>This is where we are going to show the icons</p>
+  </div>
+  <div class="card-tabs">
+    <ul class="tabs blue tabs-fixed-width">
+      <li class="tab"><a class="active"href="#test1" data-time="00">6am</a></li>
+      <li class="tab"><a class="inactive"href="#test2"data-time="01">9am</a></li>
+      <li class="tab"><a class="inactive"href="#test3"data-time="02">noon</a></li>
+      <li class="tab"><a class="inactive"href="#test4"data-time="03">3pm</a></li>
+      <li class="tab"><a class="inactive"href="#test5"data-time="04">6pm</a></li>
+    </ul>
+  </div>
+  <div class="card-content bottom grey lighten-4">
+    <div class="weather-container">
 
+      
+    </div>
+    <!-- <div id="unix_time_code">unix time code</div>
+    
+    <div ><span id="day06AMtemp"></span></div>
+    <div ><span id="day09AMtemp"></span></div>
+      <div id="test2">low</div>
+      <div id="rainChance">chance of rain</div>
+      <div id="test4">clouds</div>
+      <div id="test5">sunrise</div>
+      <div id="test6">sunset</div>
+      <div id="test7">wind</div>
+    </div> -->
   </div>
 
-<!-- <span id="trailNameResult"></span>
-<span id="lenghtResult"></span>
-<span id="ascentResult"></span>
-<span id="descentResult"></span> -->
-<span id="trailRatingResult"></span>
-<br>
+
+
+
 
 </div>
 
+
+
+<!-- bottom of weather section -->
+
+<!-- Ryans checklist section -->
+
+
+<div class="toBringSection"> this is the table<br>
+    <input id="newItem" type="input text" placeholder="Add an Item">
+
+    <button id="addItem">Add to List!</button>
+
+  
+    <table class="toBrintTable">
+        <thead>
+          <tr>
+              <th>X</th>
+              <th>Item</th>
+          </tr>
+        </thead>
+
+        <tbody id="itemsHere">
+          <tr>
+            <td type="button">XBtn</td>
+            <td>Alvin</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
+
+</div>
+
+
+
+<!-- End Ryans checklist section -->
+
+
+
+<!-- 
 <div class="userChecklist box">
   This is the checklist section. <br>
   <input type="text" id="checklistItem" placeholder="Checklist Item"><br>
@@ -84,34 +215,8 @@
 
 
 
-</div><br>
+</div><br> -->
 
-<div class="currentWeather box">
-    This is the weather section. <br>
-<input type="text" id="fiveDayForecast" placeholder="5 Day Forecast"><br>
-<input type="text" id="tenDayForecast" placeholder="10 day forecast"><br>
-<input type="text" id="currentLocation" placeholder="Current Location"><br>
-<input type="text" id="hikeLocationOne" placeholder="Hiking Location (GPS Coordinates)"><br>
-
-  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut possimus architecto iusto quae atque obcaecati inventore accusantium autem omnis impedit, doloribus nostrum reprehenderit voluptates sapiente ex et, aliquid, a nihil. Ab impedit cupiditate iste, nostrum, illum ipsa a ut id delectus sed, sequi laudantium mollitia ullam aperiam optio! Sunt consequatur repudiandae atque omnis sint ipsam odit, officia, unde illum ipsum laudantium quo neque vitae consectetur non eius ea beatae accusantium est, veniam exercitationem distinctio! Eos quisquam in architecto a, quibusdam voluptatem, corrupti recusandae sequi nulla animi quas! Debitis nulla quibusdam perspiciatis minus voluptatibus possimus dolor, dolore quae repudiandae tenetur illum.
-</div>
-
-<div class="mapDirections box">
-  This is the maps & direction section. <br>
-
-  <input type="text" id="startingLocation" placeholder="Starting Address"><br>
-<input type="text" id="hikeLocationTwo" placeholder="Hiking Location (GPS Coordinates)"><br>
-
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Non dolore velit ut, eius porro cum, est molestias nobis temporibus deleniti quasi nostrum amet officiis mollitia pariatur quas dignissimos quia ratione necessitatibus blanditiis nisi quibusdam dolorum! Sed ipsam, magnam iusto nihil, facere necessitatibus doloremque unde nam laboriosam quasi rem quidem repellendus laborum sapiente aut consequatur, voluptatum corrupti nisi labore obcaecati eum modi. Distinctio hic voluptate dicta tempore eum iure, ducimus corporis maiores quos quam nisi, delectus praesentium dolorum esse, porro optio ut placeat et qui animi modi dolores mollitia corrupti beatae. Eius veritatis ullam, velit laboriosam placeat natus accusantium doloremque adipisci.
-</div><br>
-
-
-
-
-<!-- //// -->
-
-
-  <!--  -->
 
 </container>
 
