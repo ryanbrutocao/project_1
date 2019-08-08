@@ -40,3 +40,62 @@ background-color: white;}
 .btn-floating.halfway-fab {
   bottom: 0px !important;
 }
+
+
+
+h1 {
+  background: darkblue;
+  color: silver;
+  padding: 0.625em 1.25em;
+  text-align: left;
+  margin: 0;
+  font-size: 2em;
+  font-weight: normal;
+}
+
+ul {
+  margin: 2px;
+  padding: 2px;
+}
+
+li {
+  list-style: none;
+  background: #fff;
+  height: 2.5em;
+  line-height: 2.5;
+  color: #212121;
+}
+
+li:nth-child(2n) {
+  background: #CFD8DC;
+}
+
+span {
+  background-color: red;
+  height: 37.5px;
+  margin-right: 20px;
+  text-align: center;
+  color: white;
+  opacity: 0;
+  width: 0;
+  display: inline-block;
+  transition: all 0.4s linear;
+}
+
+li:hover span {
+  width: 40px;
+  display: inline-block;
+  opacity: 1;
+}
+
+#container {
+  width: 1333px;
+  margin: 50px auto 0;
+  background: silver;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
+}
+
+.delete {
+  color:black;
+  text-decoration: line-through;
+}

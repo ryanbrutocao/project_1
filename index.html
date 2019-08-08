@@ -12,6 +12,7 @@
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
    <link type="text/css" rel="stylesheet" href="./assets/materialize/css/materialize.css"  media="screen,projection"/>
    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <script src="https://kit.fontawesome.com/d033e3435d.js"></script>
   </head>
   <body>
     <script type="text/javascript">   </script>       
@@ -49,42 +50,19 @@
 </div>
 
 <div class="userChecklist box">
-  This is the checklist section. <br>
-  <input type="text" id="checklistItem" placeholder="Checklist Item"><br>
-  <input type="button" value="Add Item" id="itemBtn">  
-  <ul id='list'>
-      <li>Waterbottle</li>
-      <li>Sunscreen</li>
-      <li>Backpack</li>
-      <li>Snacks</li>
-      <li>Maps</li>
+  <div id="container">
+    <h1>Checklist</h1>
+      <input type="text" placeholder="Add a new item here">
+
+    <ul>
+      <li><span><i class="far fa-trash-alt" aria-hidden="true"></i></span> Waterbottle</li>
     </ul>
-    <script type="text/javascript">
-    //functionality for checklist added below here
-    $(document).ready(function(){
-      $("#itemBtn").click(function(){
-        $("#list").append();
-      })
+
+</div>
+
+</div>
 
 
-    });
-
-
-
-
-//     document.getElementById("itemBtn").onclick = function() {
-  
-//     var text = document.getElementById("checklistItem").value; 
-
-//     var li = "<li>" + text + "</li>";
-
-//     document.getElementById("list").appendChild();
-// }
-    </script>
-
-
-
-</div><br>
 
 <div class="currentWeather box">
     This is the weather section. <br>

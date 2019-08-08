@@ -4,14 +4,14 @@
 
 
 var firebaseConfig = {
-  apiKey: "AIzaSyB9Wl757G8LcFITZ_o8XCty7R_qe1-RHbM",
-  authDomain: "hiking-project-1.firebaseapp.com",
-  databaseURL: "https://hiking-project-1.firebaseio.com",
-  projectId: "hiking-project-1",
-  storageBucket: "",
-  messagingSenderId: "271758048795",
-  appId: "1:271758048795:web:c4c529634163567b"
-};
+  apiKey: "AIzaSyA3Udzejqqcsd9dKQt84RK1Fpikcinmu6s",
+    authDomain: "group-project1-7e584.firebaseapp.com",
+    databaseURL: "https://group-project1-7e584.firebaseio.com",
+    projectId: "group-project1-7e584",
+    storageBucket: "",
+    messagingSenderId: "436699833671",
+    appId: "1:436699833671:web:640129acb8d1dabf"
+  };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
@@ -247,3 +247,36 @@ $("#carouselResults").append(newHike)
 
 
 // End of Ryan's hiking API and Firebase Code //HighAlt
+
+
+//Beginning of David's checklist javascript work
+
+   // This is the beginning code for the checklist to function
+$('ul').on('click', 'li', function() {
+
+  $(this).toggleClass('delete');
+
+});
+
+// Below is the code for deleting items from the list
+//the This statement with fadeout controls how quickly the item disappears from the list itself.
+$('ul').on('click', 'span', function(event) {
+  $(this).parent().fadeOut(300, function() {
+    $(this).remove();
+
+  });
+  event.stopPropagation();
+
+});
+
+// Make a new checklist item
+$('input[type="text"]').on('keypress', function(event) {
+  //the code below states that if the enter key is depressed after user input is made, their input will be added to the list via the enter button
+  if (event.which === 13) {
+    var newItem = $(this).val();
+    $(this).val("");
+    //the code below will take the user input and add it to the existing list.
+    $('ul').prepend('<li><span><i class="far fa-trash-alt" aria-hidden="true"></i></span> ' + newItem + '</li>');
+
+  }
+});
