@@ -34,7 +34,7 @@
             <input class="numStreet" type="text" id="streetNum" placeholder="Address"><br>
             <input class="city" type="text" id="city" placeholder="City"><br>
             <input class="state" type="text" id="state" placeholder="State"><br>
-            <input class="zip" type="number" id="zip" placeholder="Zip Code"><br>
+            <input class="zip" type="text" id="zip" placeholder="Zip Code"><br>
             <!-- <input type="submit" id="addressSubmit" value="send address to database"> -->
           </div>
     </span>
@@ -46,16 +46,16 @@
     <div class="card-panel yellow" id="hikeSearch">
       <span class="white-text">
           <div class="searchHikes">
-              This is the search for hikes section. <br>
+             <br>
             
-            <input class="hikeInputs" type="number" min="0" max="200" id="maxHikeDistance" placeholder="Max Hike Distance (0-200 Miles)"><br>
-            <input class="hikeInputs"type="number" min="0" max="200" id="minHikeDistance" placeholder="Min Hike Distance (0-200 Miles)"><br>
-            <input class="hikeInputs"type="number" min="0" max="4" id="hikeRating" placeholder="Hike Rating (0-4)"><br>
-            <input class="hikeInputs"type="number" min="0" max="500" id="resultsNum"placeholder="Max 500" ><br>
-            <input type="submit" id="hikeSearch" value="Find a hike!">
+            <input class="hikeInputs" type="text" min="0" max="200" id="maxHikeDistance" placeholder="Max Hike Distance (0-200 Miles)"><br>
+            <input class="hikeInputs"type="text" min="0" max="200" id="minHikeDistance" placeholder="Min Hike Distance (0-200 Miles)"><br>
+            <input class="hikeInputs"type="text" min="0" max="4" id="hikeRating" placeholder="Hike Rating (0-4)"><br>
+            <input class="hikeInputs"type="text" min="0" max="500" id="resultsNum"placeholder="Max 500" ><br>
             
             
             <br>
+            <input type="submit" id="hikeSearch" value="Find a hike!">
             
           </div>
           
@@ -91,52 +91,31 @@
     <!-- Keep these links up top -->
 <!-- Working code below here -->
 <container>
+<!-- to bring section  -->
 
-  
 
-  
 <!-- top of weather section -->
+<!-- <div>
+<span class="currentWeather">
   
+  
+</span>
+</div>
+
+
+
 <div class="currentWeather">
-    
-<!-- <input type="submit" id="testBtn" value="testBtn"> -->
 
-<div class="card">
-  <div class="card-content blue">
-    <p>This is where we are going to show the icons</p>
-  </div>
-  <div class="card-tabs">
-    <ul class="tabs blue tabs-fixed-width">
-      <li class="tab"><a class="active"href="#test1" data-time="00">6am</a></li>
-      <li class="tab"><a class="inactive"href="#test2"data-time="01">9am</a></li>
-      <li class="tab"><a class="inactive"href="#test3"data-time="02">noon</a></li>
-      <li class="tab"><a class="inactive"href="#test4"data-time="03">3pm</a></li>
-      <li class="tab"><a class="inactive"href="#test5"data-time="04">6pm</a></li>
-    </ul>
-  </div>
-  <div class="card-content bottom grey lighten-4">
-    <div class="weather-container">
-
-      
-    </div>
-    <!-- <div id="unix_time_code">unix time code</div>
-    
-    <div ><span id="day06AMtemp"></span></div>
-    <div ><span id="day09AMtemp"></span></div>
-      <div id="test2">low</div>
-      <div id="rainChance">chance of rain</div>
-      <div id="test4">clouds</div>
-      <div id="test5">sunrise</div>
-      <div id="test6">sunset</div>
-      <div id="test7">wind</div>
-    </div> -->
-  </div>
-
-
-
-
+ <ul class="collection with-header">
+    <li class="collection-header"><h4>First Names</h4></li>
+    <li class="collection-item">Alvin</li>
+    <li class="collection-item">Alvin</li>
+    <li class="collection-item">Alvin</li>
+    <li class="collection-item">Alvin</li>
+  </ul>
 
 </div>
+ -->
 
 
 
@@ -144,88 +123,35 @@
 
 <!-- Ryans checklist section -->
 
+</div> 
 
-<div class="toBringSection"> this is the table<br>
-    <input id="newItem" type="input text" placeholder="Add an Item">
-
-    <button id="addItem">Add to List!</button>
-
-  
-    <table class="toBrintTable">
-        <thead>
-          <tr>
-              <th>X</th>
-              <th>Item</th>
-          </tr>
-        </thead>
-
-        <tbody id="itemsHere">
-          <tr>
-            <td type="button">XBtn</td>
-            <td>Alvin</td>
-          </tr>
-        </tbody>
-      </table>
-
-
-
-
-</div>
-
-
+<div class="row s6 m5 l4 xl4 ">
+  <div>
+    <div class=" card-panel blue lighten-2">
+        <form class="list white text">
+            <label>
+              <button class="btn waves-effect blue" id="addItem">Add to List!</button>
+              <input type="text" id="newItem" placeholder="Add an Item" />
+            </label>  
+            <ul class="hiking-list"></ul>
+          </form>  
+    </div>      
+  </div>  
+</div>  
+      
 
 <!-- End Ryans checklist section -->
 
 
-
-<!-- 
-<div class="userChecklist box">
-  This is the checklist section. <br>
-  <input type="text" id="checklistItem" placeholder="Checklist Item"><br>
-  <input type="button" value="Add Item" id="itemBtn">  
-  <ul id='list'>
-      <li>Waterbottle</li>
-      <li>Sunscreen</li>
-      <li>Backpack</li>
-      <li>Snacks</li>
-      <li>Maps</li>
-    </ul>
-    <script type="text/javascript">
-    //functionality for checklist added below here
-    $(document).ready(function(){
-      $("#itemBtn").click(function(){
-        $("#list").append();
-      })
-
-
-    });
-
-
-
-
-//     document.getElementById("itemBtn").onclick = function() {
-  
-//     var text = document.getElementById("checklistItem").value; 
-
-//     var li = "<li>" + text + "</li>";
-
-//     document.getElementById("list").appendChild();
-// }
     </script>
 
+    
+    
+</div><br> 
 
-
-</div><br> -->
 
 
 </container>
-
-
-
-
-
-
-
 
 <!-- Working code above here -->
 <!-- Keep these links at the bottom -->

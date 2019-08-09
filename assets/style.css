@@ -1,128 +1,139 @@
-
-html { 
-  background: url(./images/pexels-photo-1666021.jpeg) no-repeat center center fixed; 
+html {
+  background: url(./images/pexels-photo-1666021.jpeg) no-repeat center center
+    fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   height: 100%;
-}
-img {
-  max-height: 300px
-}
-#header {
-  height:3.6em;
+ }
+ img {
+  max-height: 300px;
+ }
+ #header {
+  height: 3.6em;
   background-color: #1b5e20;
-  opacity: .9;
-}
-.flow-text.center-align{
+  opacity: 0.9;
+ }
+ .flow-text.center-align {
   color: whitesmoke;
-  font-family: 'Beth Ellen', cursive;
-  padding-top: .5em;
-}
-
-.box {
+  font-family: "Beth Ellen", cursive;
+  padding-top: 0.5em;
+ }
+ .box {
   border: 2px solid black;
   /* height: 300px; */
-  
   max-width: 100%;
   float: left;
   margin: 1%;
   padding: 1%;
-}
-.hikeInputs {
+ }
+ .hikeInputs {
   /* min-width: 400px; */
   width: 100%;
-}
-.card {
+ }
+ .card {
   width: 300px;
   /* height: auto; */
-}
-.searchHikes {
+ }
+ .searchHikes {
   width: 100%;
-  min-height:100px;
-}
-/* 
-#carouselResults {
+  min-height: 100px;
+ }
+ /*
+ #carouselResults {
   width: 100%;
-} */
-.card-content {
+ } */
+ .card-content {
   widows: 100%;
-}
-.card {
+ }
+ .card {
   width: 100%;
-  border:1px solid rgb(178, 178, 178);
-}
-.carousel {
+  border: 1px solid rgb(178, 178, 178);
+ }
+ .carousel {
   height: 640px !important;
   vertical-align: text-top;
-}
-.carousel .carousel-item {
-  width:400px !important;
-min-height: 450px !important;
-background-color: white;}
-.btn-floating.halfway-fab {
+ }
+ .carousel .carousel-item {
+  width: 400px !important;
+  min-height: 450px !important;
+  background-color: white;
+ }
+ .btn-floating.halfway-fab {
   bottom: 0px !important;
-}
-.parallax-container {
+ }
+ .parallax-container {
   height: 1000px;
-}
-#addressInput.card-panel.teal {
+ }
+ #addressInput.card-panel.teal {
   width: 100%;
-}
-.toBrintTable {
+ }
+ .toBrintTable {
   background: white;
   border: 1px solid black;
-  height:auto;
-  var cityData = childSnapshot.val().weather_city;width: 30%;
-}
-
-
-@media only screen and (min-width:1024px) {
-
+  height: auto;
+ }
+ ul {
+  font-size: 30px;
+  color: black;
+  background-color: white;
+ }
+ .toBringList{
+   background-color: bisque;
+ }
+ .item-remove {
+  float: right;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  background-image: url("images/remove.png");
+ }
+ @media only screen and (min-width: 1024px) {
   #addressInput.card-panel.teal {
     width: 30%;
     margin-left: 3%;
-
   }
   #hikeSearch.card-panel.yellow {
     width: 30%;
     margin-left: 3%;
-
   }
-  #carouselResults{
-    
+  #addressInput.card-panel.blue.lighten-2 {
+    width: 30%;
+    margin-left: 3%;
+   }
+  
+  #carouselResults {
     width: 60%;
     float: right;
     position: top;
-    margin-top:-600px;
+    margin-top: -600px;
     margin-right: 5%;
   }
-}
-
-
-@media only screen and (max-width:993px) {
-
+ }
+ @media only screen and (max-width: 993px) {
   #addressInput.card-panel.teal {
     width: 45%;
     float: left;
     margin-left: 3%;
-
   }
   #hikeSearch.card-panel.yellow {
     width: 45%;
     float: left;
     margin-left: 3%;
-
   }
-  #carouselResults{
-    
+  #addressInput.card-panel.blue.lighten-2 {
+    width: 45%;
+    float: left;
+    margin-left: 3%;
+   }
+  #carouselResults {
     width: 100%;
     /* float: right; */
   }
-}
-@media only screen and (max-width:768px) {
-
+ }
+ @media only screen and (max-width: 768px) {
   #addressInput.card-panel.teal {
     width: 80%;
     margin-left: 10%;
@@ -132,9 +143,12 @@ background-color: white;}
     margin-left: 10%;
     /* margin: 0 auto; */
   }
-  #carouselResults{
-    
+  #addressInput.card-panel.blue.lighten-2 {
+    width: 80%;
+    margin-left: 10%;
+   }
+  #carouselResults {
     width: 100%;
     /* float: right; */
   }
-}
+ }

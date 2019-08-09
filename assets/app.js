@@ -39,7 +39,10 @@ $("#hikeSearch").on("click", function (event) {
   state = $("#state").val().trim();
   zipCode = $("#zip").val().trim();
   address = streetNum + " " + city + " " + state + " " + zipCode;
-
+  if (zipCode.length != 5) {
+    // alert('please enter a 5 digit Zip Code');
+    return false;
+}
 
   var addressData = {
     Street_Num: streetNum,
@@ -203,25 +206,6 @@ $("#hikeSearch").on("click", function (event) {
               // console.log("trail rating from API: ", trailRating);
               // console.log(resultsNum);
 
-              /////// Not sure I need this anymore...////////////////
-              // $("#trail_image").val("")
-              // $("#trail_Name").val("");
-              // $("#trail_Summary").val("");
-              // $("#trail_Rating").val("");
-              // $("#trail_Rating").val("");
-              // $("#trail_Length").val("");
-              // $("#trail_Ascent").val("");
-              // $("#trail_Descent").val("");
-              // $("#trail_High_Altitude").val("");
-              // $("#trail_Low_Altitude").val("");
-              // $("#trail_Latitude").val("");
-              // $("#trail_Longitude").val("");
-              // $("#trail_Condition_Status").val("");
-              // $("#trail_Condition_Status").val("");
-              // $("#trail_Condition_Date").val("");
-              /////// Not sure I need this anymore...////////////////
-
-
             }
           }
 
@@ -296,8 +280,8 @@ $("#hikeSearch").on("click", function (event) {
             card.append(trailDescentData);
             card.append(trailHighAltData)
             card.append(trailLowAltData)
-            card.append(trailLongitudeData);
-            card.append(trailLatitudeData)
+            // card.append(trailLongitudeData);
+            // card.append(trailLatitudeData)
             card.append(trailConditionStatusData)
             card.append(trailConditionDetailsData);
             card.append(trailConditionDateData)
@@ -419,38 +403,53 @@ $(document).ready(function () {
 })
 // Ryan's maps finished.... loads the map with pins and a route
 // completely clear and working above here...
-// document.ready( database.ref().remove())    /////  use this to clear all data from server on reload
-
 
 /////////////////Ryan's Checklist/////////////////
-$("#addItem").on("click", function (event) {
+
+
+
+$("#addItem").on("click", function(event) {
   event.preventDefault();
-  newItem = $("#newItem").val()
+  var newItem = $("#newItem").val();
+  var itemHtml =
+    "<li class='card'><span class='item-check'></span><span class='item-text'>" +
+    newItem +
+    "</span><span class='item-remove'></span></li>";
 
-
+    if (newItem.length == 0) {
+      // alert('please enter a 5 digit Zip Code');
+      return false;
+  }
+  $(".hiking-list").prepend(itemHtml);
+  $("#newItem").val("");
   fbItem = {
     item: newItem
-  }
+  };
 
-  database.ref("To_Bring").push(fbItem);
-  $("#newItem").val("")
-  var tRow = $("<tr>")
-  var tdDiv = $("<div>")
-  var tdata = $("<td type='button'>Xbtn</td>")
-  var tdItem = $("<td> this </td>")
-  tdItem.prepend(tdItem)
-  // var fbItem = 
+  // database.ref("To_Bring").push(fbItem);
+  
+  database.ref("To_Bring").push(fbItem).then((snap) => {
+    const key = snap.key
+    console.log(key);
+    // this is where I want to add it to the page...
+    
+    $(".hiking-list").on("click", ".item-remove", function(event) {
+      $(event.currentTarget)
+      .parent()
+      .remove();
 
-  tRow.append(tdata)
-  $("#itemsHere").append(tRow)
-})
+      console.log(key);
+      database.ref("To_Bring").child(key).remove()
+    });
+    
+    
+  })  
+  
+  $("#newItem").val("");
 
 
-database.ref("To_Bring").on("value", function (childSnapshot) {
-  // item = childSnapshot.val().newItem
-  // console.log(item)
-})
 
+});
 
 ///////////////////End Ryan's Checklist////////////////////////
 
@@ -460,184 +459,128 @@ database.ref("To_Bring").on("value", function (childSnapshot) {
 
 
 
-////////////weather API Call///////////////////////
+//////////weather API Call///////////////////////
 database.ref("clicked").on("value", function (childSnapshot) {
-  // setting variables from Firebase values that we can use for our hiking API call      
-  FBClickedLat = childSnapshot.val().buttonLat;
-  FBClickedLon = childSnapshot.val().buttonLon;
-  console.log(FBClickedLat);
-  console.log(FBClickedLon);
-  fiveDayWeatherURL = "http://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/forecast?lat=" + FBClickedLat + "&lon=" + FBClickedLon + "&units=imperial&appid=22de8c06ddcfd46922704ca4f14e92fa"
-  // key2: 96dc28953b5af5a1f44cbdd79a3e995d
-  // openweathermap.org/data/2.5/forecast?lat=35&lon=139&appid=b6907d289e10d714a6e88b30761fae22
-  console.log(fiveDayWeatherURL);
-  $.ajax({
-    url: fiveDayWeatherURL,
-    method: "GET",
-    dataType: 'json'
-  })
-    .then(function (response) {
-      var div = $("<div>")
+// setting variables from Firebase values that we can use for our hiking API call      
+FBClickedLat = childSnapshot.val().buttonLat;
+FBClickedLon = childSnapshot.val().buttonLon;
+console.log(FBClickedLat);
+console.log(FBClickedLon);
+fiveDayWeatherURL = "http://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/forecast?lat=" + FBClickedLat + "&lon=" + FBClickedLon + "&units=imperial&appid=96dc28953b5af5a1f44cbdd79a3e995d"
+// key2: 96dc28953b5af5a1f44cbdd79a3e995d
+// key 1: 22de8c06ddcfd46922704ca4f14e92fa
+// openweathermap.org/data/2.5/forecast?lat=35&lon=139&appid=b6907d289e10d714a6e88b30761fae22
+console.log(fiveDayWeatherURL);
+$.ajax({
+url: fiveDayWeatherURL,
+method: "GET",
+dataType: 'json'
+})
+.then(function (response) {
+  var div = $("<div>")
 
-      var config = [
-        {
-          time: "06:00:00",
-          value: "6:00am"
-        },
-        {
-          time: "09:00:00",
-          value: "9:00am"
-        },
-        {
-          time: "12:00:00",
-          value: "12:00pm"
-        },
-        {
-          time: "15:00:00",
-          value: "3:00pm"
-        },
-        {
-          time: "18:00:00",
-          value: "6:00pm"
-        },]
+  var config = [
+    {
+      time: "06:00:00",
+      value: "6:00am"
+    },
+    {
+      time: "09:00:00",
+      value: "9:00am"
+    },
+    {
+      time: "12:00:00",
+      value: "12:00pm"
+    },
+    {
+      time: "15:00:00",
+      value: "3:00pm"
+    },
+    {
+      time: "18:00:00",
+      value: "6:00pm"
+    },]
+  var counter = 5;
+  var rowCount = 0;
+  var count = 0;
+  var dayVal = 0;
+  var bigCard = $("<ul class='collection with-header'>")
+  var cardHeader = $("<ul class='collection header'>")
+  var smallerRow = $("<li class='collection-item'>")
+  var h4 = $("<h4>")
+  // row = $("<div class='row'>")
+  div = $("<div>")
+  for (var i = 0; i < response.list.length; i++) {
+    var dt_txt = response.list[i].dt_txt;
+    // console.log(dt_txt);
+    var time = dt_txt.split(" ");
+    console.log(time);
 
-      var counter = 5;
-      var rowCount = 0;
-      var dayVal = 0
-      row = $("<div class='row'>")
-      // div = $("<div>")
-      for (var i = 0; i < response.list.length; i++) {
-        var dt_txt = response.list[i].dt_txt;
-        // console.log(dt_txt);
-        var time = dt_txt.split(" ");
-        // console.log(time);
+    for (var j = 0; j < config.length; j++) {
+ console.log(time[0]);
+ console.log(time[1]);
+      // dispTime = String(time[1])+"<br>";
+      dispDate = String(time[0])+ " at "
+      console.log(dispDate);
+      if (config[j].time === time[1]) {
+        
+        dispTime =(config[j].value);
+        console.log(config[j].value);
+        console.log(dispTime);
+        // console.log(counter);
+        // console.log(response.list[i].main.temp)
+        var daytime = dayVal+[j]; 
+        // console.log("day time",daytime);
+        var temp = response.list[i].main.temp;
+        var cloud = response.list[i].clouds.all;
+        var wind = response.list[i].wind.speed;
+        var timeDisp = time[1];
+        // var header = $("<ul class ='collection with-header'");
+        ////
+        var tempDiv = $("<div class ='collection-item'>").text("Temperature: " + temp + " F");
+        tempDiv.addClass(daytime)
+        var cloudDiv = $("<div class ='collection-item'>").text("Cloud cover: " + cloud + "%");
+        cloudDiv.addClass(daytime)
+        var windDiv = $("<div class ='collection-item'>").text("Wind Speed: " + wind)
+        windDiv.addClass(daytime)
+        var card = $("<ul class = 'collection with-header'>")
+        
+        // bigCard.append(div)
+        
+        counter--;
+        rowCount=0
+        // row.attr("id", rowCount)
+      
+        
+        if (counter === 0) {
+          div.append(cardHeader)
+          cardHeader.append(dispDate + dispTime)
+          // cardHeader.append(dispTime)
+          // div.append(windDiv)
+          // div.append(tempDiv)
+          // div.append(cloudDiv)
+          
+          
+          smallerRow.append(cloudDiv)
+          smallerRow.append(tempDiv) 
+          smallerRow.append(windDiv) 
+          
+          cardHeader.append(smallerRow)
+          bigCard.append(cardHeader)
+          // row = $("<div class='row'>");
+          
+          // row.addClass('day' + rowCount++);
+          // row.attr("id",count++)
+          rowCount = 0;
+          counter = 5;
+          $(".currentWeather").append(bigCard)  
 
-        for (var j = 0; j < config.length; j++) {
-          if (config[j].time === time[1]) {
-            // console.log(config[j]);
-            // console.log(counter);
-            // console.log(response.list[i].main.temp)
-            var daytime = dayVal+[j]; 
-            console.log("day time",daytime);
-            var temp = response.list[i].main.temp;
-            var cloud = response.list[i].clouds.all;
-            var wind = response.list[i].wind.speed;
-            var tempDiv = $('<span>').text("Temperature: " + temp + " F");
-            tempDiv.attr("data-time", daytime)
-            var cloudDiv = $("<div>").text("Cloud cover: " + cloud + "%" );
-            cloudDiv.attr("data-time", daytime)
-            var windDiv = $("<div>").text("Wind Speed: " + wind)
-            windDiv.attr("data-time", daytime)
-
-            counter--;
-            row.append(tempDiv)
-            row.append(cloudDiv)
-            row.append(windDiv)
-
-            // div.addClass(row)
-            // div.append(temp)
-            
-            if (counter === 0) {
-              row.addClass('day' + rowCount);
-              rowCount++;
-              $(".weather-container").append(row)
-              row = $("<div class='row'>");
-              counter = 5;
+         
             }
           }
         }
       }
-
-      var weatherInfo = response;
-      console.log(weatherInfo);
-      var weatherCity = weatherInfo.city.name;
-      div.append(weatherCity);
-      console.log(weatherInfo.city.name);
-      var weatherTimeZone = weatherInfo.city.timezone
-      div.append(weatherTimeZone);
-      console.log(weatherInfo.city.timezone);
-      // console.log(hrNum);
-      for (let i = 0; i < weatherInfo.list.length; i++) {
-        for (let h = 0; h < weatherInfo.list.length; h++) {
-          // console.log(weatherInfo.list[i]); //gives a ton of objects/arrays
-          // var weatherTemp = weatherInfo.list[i].main.temp;
-          // div.append("This Temperature: " + weatherTemp);
-          // $(".bottom").append(div)
-
-          var weatherDescription = weatherInfo.list[i].weather[0].description;  // no clue why this stops the loop from
-          div.append(weatherDescription);
-          // console.log("weather description: ", weatherInfo.list[i].weather[0].description);
-          var unixDT = weatherInfo.list[i].dt;
-          div.append(unixDT);
-          // console.log("unix dt: ", weatherInfo.list[i].dt) 
-          var cloudCover = weatherInfo.list[i].clouds.all;
-          div.append(cloudCover);
-          // console.log("cloud cover %: ", weatherInfo.list[i].clouds.all) 
-          var windSpeed = weatherInfo.list[i].wind.speed;
-          div.append(windSpeed);
-          // console.log("wind speed: ", weatherInfo.list[i].wind.speed)
-          var windDeg = weatherInfo.list[i].wind.deg;
-          div.append(windDeg)
-          // console.log("wind deg: ", weatherInfo.list[i].wind.deg)
-          var dateTimeText = weatherInfo.list[i].dt_txt;
-          div.append(dateTimeText)
-          // console.log("date time text: ", weatherInfo.list[i].dt_txt );
-        }
-
-        var tempforecast = {
-          weather_city: weatherCity,
-          weather_timezone: weatherTimeZone,
-          weather_description: weatherDescription,
-          UnixDT: unixDT,
-          cloudCover: cloudCover,
-          wind_speed: windSpeed,
-          wind_deg: windDeg,
-          date_time_text: dateTimeText
-        }
-
-        database.ref("forecast").push(tempforecast)
-      }
     })
-
-  database.ref("forecast").on("child_added", function (childSnapshot) {
-
-    var citydata = childSnapshot.val().weather_city;
-    var timezone = childSnapshot.val().weather_timezone
-    var weatherdesc = childSnapshot.val().weather_description;
-    // console.log(weatherdesc);
-    var unixTime = childSnapshot.val().UnixDT;
-    var cloudcover = childSnapshot.val().cloudCover;
-    var windspeed = childSnapshot.val().wind_speed;
-    var winddegree = childSnapshot.val().wind_deg;
-    var datetimetext = childSnapshot.val().date_time_text;
-
-    // num=0
-    // var day1=[10,11,12,13,14]
-
-    // var day0=[2,3,4,5,6];
-    // var div = $("<div>")
-    // var br = $("<br>")
-    // for(let j=0; j<day0.length; j++){
-    //   // var num0 = day0[2]
-    //   console.log(day0[j]);
-    //   // console.log("temperature: ", weatherInfo.list[num0].main.temp)
-    //   // $("#day06AMtemp").text("Temperature: " + weatherInfo.list[2].main.tem
-    //   temp0 =  weatherInfo.list[j].main.temp
-    //   div.append("temp0:",temp0)
-    // } 
-
-    // var tempCard = $("<div>").addClass("day"+num)
-    // var tempday0 = $("<div>").append("temp: ", temp0)
-    // tempCard.append(tempday0)
-    // // description0 =  weatherInfo.list[num0].weather[0].description
-    //   // div.append(br)
-    //   // div.append("Temperature: " + temp0 )
-    //   // div.append("Weather Description: " +  description0 )
-    //   $(".day0").append(div)
-
-  })
-})
-
-
-// curent time is( list:dt) minus (city: -timezone)
-///////////////////////////////////////////
+    })
+///////////////////////////////////////
+// document.load( database.ref().remove())    /////  use this to clear all data from server on reload
